@@ -32,10 +32,11 @@ app.use("/rentaltracking/api/", rentaltracking);
 app.use("/maintenance/api/", Auth, maintenanceRoutes);
 
 iniateSockets(server);
+// let uri = "mongodb://ammar:367900aA@cluster0-shard-00-00.1zari.mongodb.net:27017,cluster0-shard-00-01.1zari.mongodb.net:27017,cluster0-shard-00-02.1zari.mongodb.net:27017/tenantTrack?ssl=true&replicaSet=atlas-12t03u-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 mongoose.set("strictQuery", false);
 mongoose
-  .connect(process.env.mongodb_url)
+  .connect("mongodb://ammar:367900aA@cluster0-shard-00-00.1zari.mongodb.net:27017,cluster0-shard-00-01.1zari.mongodb.net:27017,cluster0-shard-00-02.1zari.mongodb.net:27017/tenantTrack?ssl=true&replicaSet=atlas-12t03u-shard-0&authSource=admin&retryWrites=true&w=majority")
   .then((response) => {
     console.log(`Database Connected Successfully`);
   })
