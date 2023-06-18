@@ -199,6 +199,54 @@ const GetTenantProperties = async (req, res, next) => {
     }
 }
 
+const GetAllProperties = async (req, res, next) => {
+    try {
+
+        const Id = req.id;
+        let props = await Property.find({ userid: {$ne: Id}})
+        let NodeList = [];
+
+        for(let i = 0; i < props.length; i++){
+            const { _id, username, userid, location, rent, date, description, bedroom, bathroom, area, images, attachment } = props[i];
+            NodeList.push({
+                id: _id,
+                title: username,
+                landlord: await User.findById(userid),
+                location: location,
+                rent: rent,
+                date: date,
+                description: description,
+                bedroom: bedroom,
+                bathroom: bathroom,
+                area: area,
+                images: images,
+                attachment: attachment
+            });
+        }
+        
+
+        if (NodeList.length > 0) {
+            res.send({
+                message: "Data Fetched",
+                status: 200,
+                data: NodeList,
+            });
+        } else {
+            res.send({
+                message: "Data Not Found",
+                status: 404,
+                data: [],
+            })
+        }
+    } catch (err) {
+        res.json({
+            message: err,
+            status: 503,
+            data: [],
+        })
+    }
+}
+
 const Properties_Details = async (req, res, next) => {
     const Id = req.params.pid;
 
@@ -261,7 +309,8 @@ module.exports = {
     SendAttachment,
     Properties_Details,
     GetTenantProperties,
-    TransferOwn
+    TransferOwn,
+    GetAllProperties
 }
 
 

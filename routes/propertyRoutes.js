@@ -6,12 +6,15 @@ const { PropertyCreate,
     GetProperties,
     Properties_Details,
     GetTenantProperties,
-    TransferOwn
+    TransferOwn,
+    GetAllProperties
 } = require('../controllers/PropertyController')
 
 router.post('/create', PropertyCreate);
 router.post('/update', PropertyUpdate);
 router.get('/properties', Auth, GetProperties);
+router.get('/allProperties', Auth, GetAllProperties);
+
 router.get('/tenantproperties', Auth, GetTenantProperties);
 router.post('/TransferOwn', Auth, TransferOwn);
 //router.post('/upload-attachment',/* AttachmentUpload.upload,*/ SendAttachment);
