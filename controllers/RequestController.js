@@ -12,7 +12,7 @@ const MakeRequest = async (req, res, next) => {
                 tenant_id : req.body.tenant_id,
                 landlord_id : req.body.landlord_id,
                 property_id : req.body.property_id,
-                status: False
+                status: false
             });
             const savedRequest = await newRequest.save();
             res.send({
@@ -29,7 +29,7 @@ const MakeRequest = async (req, res, next) => {
 
     } catch (err) {
         res.send({
-            message: "request Not Saved",
+            message: "request Not Saved" + err,
             status: 404
         })
     }
