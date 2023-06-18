@@ -30,6 +30,8 @@ app.use("/property/api/", Auth, propertyRoutes);
 app.use("/property/tenant/api/", Auth, propertyTenantRoutes);
 app.use("/rentaltracking/api/", rentaltracking);
 app.use("/maintenance/api/", Auth, maintenanceRoutes);
+app.use("/requests/api/", Auth, propertyRoutes);
+
 
 iniateSockets(server);
 // let uri = "mongodb://ammar:367900aA@cluster0-shard-00-00.1zari.mongodb.net:27017,cluster0-shard-00-01.1zari.mongodb.net:27017,cluster0-shard-00-02.1zari.mongodb.net:27017/tenantTrack?ssl=true&replicaSet=atlas-12t03u-shard-0&authSource=admin&retryWrites=true&w=majority";
@@ -44,6 +46,6 @@ mongoose
     console.log(`Database Disconnected ${error}`);
   });
 
-server.listen(process.env.PORT || 3000, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
+server.listen(4000, () => {
+  console.log(`Server is running on port 4000`);
 });

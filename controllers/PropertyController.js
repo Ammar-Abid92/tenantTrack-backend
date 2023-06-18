@@ -203,6 +203,7 @@ const GetAllProperties = async (req, res, next) => {
     try {
 
         const Id = req.id;
+        const tenantproperties = await ProPertyTent.find({ userid: Id });
         let props = await Property.find({ userid: {$ne: Id}})
         let NodeList = [];
 
